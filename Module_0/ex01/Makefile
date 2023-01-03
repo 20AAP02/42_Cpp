@@ -1,14 +1,15 @@
 CC			= 	g++ -std=c++98
 CFLAGS		= 	-Wall -Wextra -Werror
 RM			= 	/bin/rm -f
-NAME		= 	megaphone
+NAME		= 	phone_book
 
+INCLUDES	=	./
 SRCS		=	$(shell find ./ -name "*.cpp")
 
 all: $(NAME)
 
-$(NAME):
-	@$(CC) $(CFLAGS) -o $(NAME) $(SRCS)
+$(NAME): $(SRCS)
+	@$(CC) $(CFLAGS) -I$(INCLUDES) -o $(NAME) $(SRCS)
 
 fclean:
 	@$(RM) $(NAME)
@@ -16,9 +17,6 @@ fclean:
 re: fclean all
 
 e: re
-	@./$(NAME) Hello world
-	@./$(NAME) Hello " world" !
-	@./$(NAME) Hello " world " 'lol' ' !!! '
 	@./$(NAME)
 
 .PHONY: all fclean re e
