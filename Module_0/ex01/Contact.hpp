@@ -8,6 +8,7 @@
 # include <cctype>
 # include <string>
 # include <bits/stdc++.h>
+# include <unistd.h>
 
 class Contact
 {
@@ -15,7 +16,7 @@ class Contact
 	std::string phone_number, darkest_secret;
 
 public:
-	struct tm *localTime;
+	struct tm localTime;
 	int check_input(std::string str);
 	int	contact_empty(void);
 	void display(int index);

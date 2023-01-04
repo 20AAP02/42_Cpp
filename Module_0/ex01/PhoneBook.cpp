@@ -1,7 +1,7 @@
 #include <PhoneBook.hpp>
 
 // return 0 if the oldest is the first arg | return 1 if the not
-// return 2 if it's the same time
+// return -1 if it's the same time
 int compare_time(struct tm *a, struct tm *b)
 {
 	if (a->tm_year != b->tm_year)
@@ -16,7 +16,7 @@ int compare_time(struct tm *a, struct tm *b)
 		return (a->tm_min > b->tm_min);
 	if (a->tm_sec != b->tm_sec)
 		return (a->tm_sec > b->tm_sec);
-	return 2;
+	return -1;
 }
 
 int PhoneBook::oldest_contact_index(void)
@@ -34,9 +34,9 @@ int PhoneBook::oldest_contact_index(void)
 			return -1;
 		if (PhoneBook::contacts[i].contact_empty())
 			break;
-		if (compare_time(oldest_time, PhoneBook::contacts[i].localTime))
+		if (compare_time(oldest_time, &(PhoneBook::contacts[i].localTime)))
 		{
-			oldest_time = PhoneBook::contacts[i].localTime;
+			oldest_time = &(PhoneBook::contacts[i].localTime);
 			respective_index = i;
 		}
 	}
@@ -66,7 +66,7 @@ void PhoneBook::open_phone_book(void)
 		{
 			PhoneBook::add_contact();
 		}
-		else if (!command.compare("SEARCH")) 
+		else if (!command.compare("SEARCH"))
 		{
 			PhoneBook::search_contact();
 		}
@@ -77,7 +77,7 @@ void PhoneBook::open_phone_book(void)
 		}
 		else if (!command.empty())
 		{
-			// system("clear");
+			system("clear");
 			std::cout << "Invalid Command!\nPlease use one of this commands:\n ADD";
 			std::cout << " (Add New Contact)\n SEARCH (Search Contact by Index)\n EXIT (Exit Phone Book)";
 			std::cout << std::endl;
@@ -87,32 +87,23 @@ void PhoneBook::open_phone_book(void)
 
 void PhoneBook::add_contact(void)
 {
-	Contact contact;
 	int	index = PhoneBook::len();
 
-	// system("clear");
-	if (contact.get_contact_info())
-	{
-		std::cout << "Field can not be left empty!" << std::endl;
-	}
-	else if (index == 8)
-	{
+	system("clear");
+	if (index == 8)
 		index = PhoneBook::oldest_contact_index();
-		PhoneBook::contacts[index] = contact;
-		std::cout << "Contact Added" << std::endl;
-	}
+	if (PhoneBook::contacts[index].get_contact_info())
+		std::cout << "Field can not be left empty!" << std::endl;
 	else
-	{
-		PhoneBook::contacts[index] = contact;
 		std::cout << "Contact Added" << std::endl;
-	}
 }
 
 void PhoneBook::search_contact(void)
 {
-	int index;
+	std::string index;
+	int	index_int;
 
-	// system("clear");
+	system("clear");
 	if (PhoneBook::len() == 0)
 	{
 		std::cout << "No Contacts on Phone Book...\n";
@@ -128,19 +119,18 @@ void PhoneBook::search_contact(void)
 		PhoneBook::contacts[i].display(i);
 	}
 	std::cout << "\nINDEX: ";
-	std::cin >> index;
-	// system("clear");
-	if (index >= 8 || PhoneBook::contacts[index].contact_empty())
-	{
-		std::cout << "Invalid Index" << std::endl;
-	}
+	std::getline(std::cin, index);
+	index_int = atoi(&index[0]);
+	system("clear");
+	if (!(index[0] != '0' && index_int == 0) && index_int < 8 && index_int >= 0 && !PhoneBook::contacts[index_int].contact_empty())
+		PhoneBook::contacts[index_int].print_detailed_info();
 	else
-		PhoneBook::contacts[index].print_detailed_info();
+		std::cout << "Out of range or invalid character!\n";
 }
 
 void PhoneBook::clear_phone_book(void)
 {
-	// system("clear");
+	system("clear");
 	for (int i = 0; i < 8; i++)
 		PhoneBook::contacts[i].clear_contact();
 }

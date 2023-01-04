@@ -17,6 +17,12 @@ void print_contact_info(std::string str)
 
 void Contact::print_detailed_info(void)
 {
+	std::cout << "Creation Date: ";
+	// sec, min, hour
+	std::cout << Contact::localTime.tm_hour << ":" << Contact::localTime.tm_min << ":" << Contact::localTime.tm_sec;
+	// day, month, year
+	std::cout << " " << Contact::localTime.tm_mday << "/" << Contact::localTime.tm_mon + 1 << "/" << Contact::localTime.tm_year;
+	std::cout << std::endl;
 	std::cout << "Name: " << Contact::name << std::endl;
 	std::cout << "Surname: " << Contact::surname << std::endl;
 	std::cout << "Nickname: " << Contact::nickname << std::endl;
@@ -41,6 +47,16 @@ void Contact::display(int index)
 	print_contact_info(Contact::surname);
 	print_contact_info(Contact::nickname);
 	std::cout << std::endl << "+------------+------------+------------+------------+" << std::endl;
+}
+
+void copy_time(struct tm *a, struct tm *b)
+{
+	a->tm_sec = b->tm_sec;
+	a->tm_min = b->tm_min;
+	a->tm_hour = b->tm_hour;
+	a->tm_mday = b->tm_mday;
+	a->tm_mon = b->tm_mon;
+	a->tm_year = b->tm_year;
 }
 
 int Contact::get_contact_info(void)
@@ -79,8 +95,7 @@ int Contact::get_contact_info(void)
 	if (Contact::check_input(Contact::darkest_secret))
 		return ERROR;
 	time(&currentTime);
-  	Contact::localTime = localtime(&currentTime);
-	// system("clear");
+	copy_time(&(Contact::localTime), localtime(&currentTime));
 	return DONE;
 }
 
