@@ -15,3 +15,13 @@ Zombie::~Zombie(void)
 {
 	std::cout << Zombie::name << " died...\n";
 }
+
+Zombie::Zombie(void)
+{
+	Zombie::name = "Nameless";
+}
+
+void Zombie::nameIt(std::string name)
+{
+	Zombie::name = name;
+}

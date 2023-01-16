@@ -1,7 +1,7 @@
 CC			= 	g++ -std=c++98
 CFLAGS		= 	-Wall -Wextra -Werror
 RM			= 	/bin/rm -f
-NAME		= 	zombie
+NAME		= 	weapons
 
 INCLUDES	=	./
 SRCS		=	$(shell find ./ -name "*.cpp")
