@@ -4,7 +4,7 @@ RM			= 	/bin/rm -f
 NAME		= 	harl
 
 INCLUDES	=	./
-SRCS		=	$(shell find ./ -name "*.cpp")
+SRCS		=	./main.cpp ./Harl.cpp
 
 all: $(NAME)
 

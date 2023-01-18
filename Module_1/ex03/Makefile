@@ -4,7 +4,7 @@ RM			= 	/bin/rm -f
 NAME		= 	weapons
 
 INCLUDES	=	./
-SRCS		=	$(shell find ./ -name "*.cpp")
+SRCS		=	./HumanB.cpp ./main.cpp ./HumanA.cpp ./Weapon.cpp
 
 all: $(NAME)
 

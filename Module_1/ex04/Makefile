@@ -4,7 +4,7 @@ RM			= 	/bin/rm -f
 NAME		= 	sed
 
 INCLUDES	=	./
-SRCS		=	$(shell find ./ -name "*.cpp")
+SRCS		=	./main.cpp ./fileReplace.cpp
 
 all: $(NAME)
 

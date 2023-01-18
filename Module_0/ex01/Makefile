@@ -4,7 +4,7 @@ RM			= 	/bin/rm -f
 NAME		= 	phone_book
 
 INCLUDES	=	./
-SRCS		=	$(shell find ./ -name "*.cpp")
+SRCS		=	./main.cpp ./PhoneBook.cpp ./Contact.cpp
 
 all: $(NAME)
 

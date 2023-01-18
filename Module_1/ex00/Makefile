@@ -4,7 +4,7 @@ RM			= 	/bin/rm -f
 NAME		= 	zombie
 
 INCLUDES	=	./
-SRCS		=	$(shell find ./ -name "*.cpp")
+SRCS		=	./randomChump.cpp ./main.cpp ./Zombie.cpp ./newZombie.cpp
 
 all: $(NAME)
 

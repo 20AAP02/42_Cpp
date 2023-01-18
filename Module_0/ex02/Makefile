@@ -4,7 +4,7 @@ RM			= 	/bin/rm -f
 NAME		= 	acount
 
 INCLUDES	=	./
-SRCS		=	$(shell find ./ -name "*.cpp")
+SRCS		=	./Account.cpp ./tests.cpp
 
 all: $(NAME)
 

@@ -3,7 +3,7 @@ CFLAGS		= 	-Wall -Wextra -Werror
 RM			= 	/bin/rm -f
 NAME		= 	megaphone
 
-SRCS		=	megaphone.cpp
+SRCS		=	./megaphone.cpp
 
 all: $(NAME)
 
