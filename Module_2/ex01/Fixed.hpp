@@ -2,6 +2,7 @@
 # define FIXED_HPP
 
 #include <iostream>
+#include <math.h> // Allowed function : float roundf(float x)
 
 class Fixed
 {
