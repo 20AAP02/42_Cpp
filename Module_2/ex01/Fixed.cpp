@@ -49,11 +49,6 @@ int pow(int x, int n)
 
 int setExpInt(const int n, int exp)
 {
-	if (exp < 0)
-	{
-		exp *= -1;
-		exp = exp | 1073741824;
-	}
 	exp = exp << 15;
 	return (n | exp);
 }
@@ -90,10 +85,10 @@ int formatInt(int n)
 		formatedInt = 1;
 		formatedInt << 31;
 	}
-	while (n != (int)roundf(1.0 + mantissaConv(mantissa)) * (float)pow(2, exp))
-	{
-		
-	}
+	for (mantissa = 0; mantissa < 100; mantissa++)
+		for (exp = -126; exp < 128; exp++)
+			if (n == (int)roundf(1.0 + mantissaConv(mantissa)) * (float)pow(2, exp))
+				break;
 	exp += 127;
 	return setExpInt(formatedInt, exp);
 }
@@ -103,9 +98,7 @@ Fixed::Fixed(const int n)
 	if (n == 0)
 		Fixed::value = 0;
 	else
-	{
-
-	}
+		Fixed::value = formatInt(n);
 }
 
 Fixed::Fixed(const float n)
