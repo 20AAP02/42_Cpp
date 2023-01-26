@@ -1,7 +1,5 @@
 #include <Fixed.hpp>
 
-const static int fractionalBits = 8;
-
 Fixed::Fixed()
 {
 	std::cout << "Default constructor called\n";
@@ -50,21 +48,21 @@ int pow(int x, int n)
 Fixed::Fixed(const int n)
 {
 	std::cout << "Int constructor called\n";
-	value = n << 8;
+	value = n << fractionalBits;
 }
 
 Fixed::Fixed(const float n)
 {
 	std::cout << "Float constructor called\n";
-	value = n;
+	value = roundf(n * (1 << fractionalBits));
 }
 
 float Fixed::toFloat(void) const
 {
-	return 0.0f;
+	return value / (1 << fractionalBits);
 }
 
 int Fixed::toInt(void) const
 {
-	return (value >> 8);
+	return (value >> fractionalBits);
 }
