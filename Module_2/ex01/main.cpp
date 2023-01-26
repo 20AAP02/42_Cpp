@@ -2,7 +2,7 @@
 
 int main()
 {
-	Fixed a(10);
-	std::cout << a.getRawBits() << std::endl;
+	Fixed a(10.5f);
+	std::cout << a.toInt() << std::endl;
 	return 0;
 }

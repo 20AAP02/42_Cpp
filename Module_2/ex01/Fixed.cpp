@@ -38,62 +38,6 @@ void Fixed::operator=(const Fixed &F)
 
 // ex01
 
-int setExpInt(const int n, int exp)
-{
-	exp = exp << 15;
-	return (n | exp);
-}
-
-int lenInt(int n)
-{
-	int i;
-	for (i = 0; n > 0; i++)
-		n /= 10;
-	return i;
-}
-
-int MantissaDivider(int len)
-{
-	int d = 1;
-	for (int i = 0; i < len; i++)
-		d *= 10;
-	return d;
-}
-
-float mantissaConv(int m)
-{
-	return (float)m / (float)MantissaDivider(lenInt(m));
-}
-
-int formatInt(int n)
-{
-	int formatedInt = 0;
-	int exp = -126;
-	int mantissa = 0;
-	// if (n < 0)
-	// {
-	// 	n *= -1;
-	// 	formatedInt = 1;
-	// 	formatedInt = formatedInt << 31;
-	// }
-	formatedInt = n;
-	for (mantissa = 0; mantissa < 100; mantissa++)
-	{
-		for (exp = -126; exp < 128; exp++)
-		{
-			if (n == (int)(roundf(1.0 + mantissaConv(mantissa)) * (float)pow(2, exp)))
-			{
-				std::cout << (int)(roundf(1.0 + mantissaConv(mantissa)) * (float)pow(2, exp)) << std::endl;
-				break;
-			}
-		}
-	}
-	exp += 127;
-	return setExpInt(formatedInt, exp);
-}
-
-// usefull
-
 int pow(int x, int n)
 {
 	if (n == 0)
@@ -103,27 +47,16 @@ int pow(int x, int n)
 	return x;
 }
 
-int getExponent(float n)
-{
-	n = n >> 23;
-	n = n & 255;
-	return n;
-}
-
-int getMantissa(float n)
-{
-	n = n & 8388607;
-
-}
-
 Fixed::Fixed(const int n)
 {
-	Fixed::value = n;
+	std::cout << "Int constructor called\n";
+	value = n << 8;
 }
 
 Fixed::Fixed(const float n)
 {
-	
+	std::cout << "Float constructor called\n";
+	value = n;
 }
 
 float Fixed::toFloat(void) const
@@ -133,5 +66,5 @@ float Fixed::toFloat(void) const
 
 int Fixed::toInt(void) const
 {
-	return 0;
+	return (value >> 8);
 }
