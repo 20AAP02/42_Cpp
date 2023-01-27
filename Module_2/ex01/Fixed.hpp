@@ -21,19 +21,6 @@ public:
 	Fixed(const float n);
 	float toFloat(void) const;
 	int toInt(void) const;
-
-	void operator>(const Fixed &F);
-	void operator<(const Fixed &F);
-	void operator>=(const Fixed &F);
-	void operator<=(const Fixed &F);
-	void operator==(const Fixed &F);
-	void operator!=(const Fixed &F);
-	void operator+(const Fixed &F);
-	void operator-(const Fixed &F);
-	void operator*(const Fixed &F);
-	void operator/(const Fixed &F);
-	void operator++(const Fixed &F);
-	void operator--(const Fixed &F);
 };
 
 std::ostream& operator<<(std::ostream& os, const Fixed& obj);
