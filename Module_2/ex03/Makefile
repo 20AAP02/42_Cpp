@@ -20,4 +20,8 @@ re: fclean all
 e: re
 	@./$(NAME)
 
+get: re
+	@./$(NAME) | tr -d -c 0-9
+	@echo ""
+
 .PHONY: all fclean re e
