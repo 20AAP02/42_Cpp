@@ -17,7 +17,10 @@ fclean:
 
 re: fclean all
 
-e: re
+cls:
+	@clear
+
+e: cls re cls
 	@./$(NAME)
 
-.PHONY: all fclean re e
+.PHONY: all fclean re e cls

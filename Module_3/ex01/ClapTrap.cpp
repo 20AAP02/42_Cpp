@@ -15,27 +15,31 @@ ClapTrap::ClapTrap(std::string name)
 	this->hitPoints = 10;
 	this->energyPoints = 10;
 	this->attackDamage = 0;
-	this->message("Unknown", "CREATED", 0);
+	this->message("Unknown", "CREATEDN", 0);
 }
 
 ClapTrap::ClapTrap(const ClapTrap &c)
 {
-	*this = c;
-}
-
-ClapTrap ClapTrap::operator =(const ClapTrap &c)
-{
+	this->name = c.getName();
 	this->hitPoints = c.getHitPts();
 	this->energyPoints = c.getEnergyPts();
 	this->attackDamage = c.getAttackDmg();
-	return *this;
+	this->message("Unknown", "CREATEDC", 0);
+}
+
+void ClapTrap::operator =(const ClapTrap &c)
+{
+	this->name = c.getName();
+	this->hitPoints = c.getHitPts();
+	this->energyPoints = c.getEnergyPts();
+	this->attackDamage = c.getAttackDmg();
+	this->message("Unknown", "COPYOPERATER", 0);
 }
 
 ClapTrap::~ClapTrap()
 {
 	this->message("Unknown", "DESTROIED", 0);
 }
-
 
 void ClapTrap::attack(const std::string &target)
 {
@@ -101,17 +105,20 @@ void ClapTrap::message(const std::string &target, const std::string type, unsign
 	else if (type == "NOENERGY_ATTACK")
 		std::cout << " has no energy to attack...\n";
 	else if (type == "CREATED")
-		std::cout << " was created!\n";
+		std::cout << " was created by deault constructor!\n";
+	else if (type == "CREATEDN")
+		std::cout << " was created by constructor with name!\n";
+	else if (type == "CREATEDC")
+		std::cout << " was created by copy constructor!\n";
 	else if (type == "DESTROIED")
 		std::cout << " has been destroied :(\n";
 	else if (type == "ALREADYDEAD")
-		std::cout << "has been dead a while ago...\n";
+		std::cout << " has been dead a while ago...\n";
+	else if (type == "COPYOPERATER")
+		std::cout << " called copy assigment operator\n";
 }
 
-std::string ClapTrap::getName()
-{
-	return this->name;
-}
+std::string ClapTrap::getName() const {	return this->name; }
 
 int ClapTrap::getHitPts() const { return this->hitPoints; }
 

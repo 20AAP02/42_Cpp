@@ -1,7 +1,7 @@
 #ifndef CLAPTRAP_HPP
 # define CLAPTRAP_HPP
 
-#include <iostream>
+# include <iostream>
 
 class ClapTrap
 {
@@ -10,12 +10,12 @@ private:
 	int hitPoints;
 	int energyPoints;
 	int attackDamage;
-	ClapTrap();
 
 public:
+	ClapTrap();
 	ClapTrap(const ClapTrap &c);
 	ClapTrap(std::string name);
-	ClapTrap operator =(const ClapTrap &c);
+	void operator =(const ClapTrap &c);
 	~ClapTrap();
 
 	void attack(const std::string &target);
@@ -23,11 +23,10 @@ public:
 	void beRepaired(unsigned int amount);
 
 	void message(const std::string &target, const std::string type, unsigned int amount) const;
-	std::string getName();
+	std::string getName() const;
 	int getHitPts() const;
 	int getEnergyPts() const;
 	int getAttackDmg() const;
 };
-
 
 #endif
