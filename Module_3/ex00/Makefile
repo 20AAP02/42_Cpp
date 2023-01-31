@@ -2,10 +2,10 @@ CC			= 	g++ -std=c++98
 CFLAGS		= 	-Wall -Wextra -Werror
 CSWITCH		=	-Wimplicit-fallthrough=0
 RM			= 	/bin/rm -f
-NAME		= 	
+NAME		= 	clapTrap
 
 INCLUDES	=	./
-SRCS		=	$(shell find ./ -name '*.c')
+SRCS		=	$(shell find ./ -name '*.cpp')
 
 all: $(NAME)
 
