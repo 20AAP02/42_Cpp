@@ -6,7 +6,7 @@ ClapTrap::ClapTrap()
 	this->hitPoints = 10;
 	this->energyPoints = 10;
 	this->attackDamage = 0;
-	this->message("Unknown", "CREATED", 0);
+	this->message("ClapTrap", "Unknown", "CREATED", 0);
 }
 
 ClapTrap::ClapTrap(std::string name)
@@ -15,7 +15,7 @@ ClapTrap::ClapTrap(std::string name)
 	this->hitPoints = 10;
 	this->energyPoints = 10;
 	this->attackDamage = 0;
-	this->message("Unknown", "CREATEDN", 0);
+	this->message("ClapTrap", "Unknown", "CREATEDN", 0);
 }
 
 ClapTrap::ClapTrap(const ClapTrap &c)
@@ -24,7 +24,7 @@ ClapTrap::ClapTrap(const ClapTrap &c)
 	this->hitPoints = c.getHitPts();
 	this->energyPoints = c.getEnergyPts();
 	this->attackDamage = c.getAttackDmg();
-	this->message("Unknown", "CREATEDC", 0);
+	this->message("ClapTrap", "Unknown", "CREATEDC", 0);
 }
 
 void ClapTrap::operator =(const ClapTrap &c)
@@ -33,12 +33,12 @@ void ClapTrap::operator =(const ClapTrap &c)
 	this->hitPoints = c.getHitPts();
 	this->energyPoints = c.getEnergyPts();
 	this->attackDamage = c.getAttackDmg();
-	this->message("Unknown", "COPYOPERATER", 0);
+	this->message("ClapTrap", "Unknown", "COPYOPERATER", 0);
 }
 
 ClapTrap::~ClapTrap()
 {
-	this->message("Unknown", "DESTROIED", 0);
+	this->message("ClapTrap", "Unknown", "DESTROYED", 0);
 }
 
 void ClapTrap::attack(const std::string &target)
@@ -46,11 +46,11 @@ void ClapTrap::attack(const std::string &target)
 	if (this->energyPoints > 0)
 	{
 		this->energyPoints -= 1;
-		this->message(target, "ATTACK", 0);
+		this->message("ClapTrap", target, "ATTACK", 0);
 	}
 	else
 	{
-		this->message(target, "NOENERGY_ATTACK", 0);
+		this->message("ClapTrap", target, "NOENERGY_ATTACK", 0);
 		return ;
 	}
 }
@@ -59,18 +59,18 @@ void ClapTrap::takeDamage(unsigned int amount)
 {
 	if (this->hitPoints > (int)amount)
 	{
-		this->message("Unknown", "DAMAGE", amount);
+		this->message("ClapTrap", "Unknown", "DAMAGE", amount);
 		this->hitPoints -= (int)amount;
 	}
 	else if (this->hitPoints == 0)
 	{
-		this->message("Unknown", "ALREADYDEAD", amount);
+		this->message("ClapTrap", "Unknown", "ALREADYDEAD", amount);
 	}
 	else
 	{
 		this->energyPoints = 0;
 		this->hitPoints = 0;
-		this->message("Unknown", "DIED", amount);
+		this->message("ClapTrap", "Unknown", "DIED", amount);
 	}
 }
 
@@ -79,17 +79,17 @@ void ClapTrap::beRepaired(unsigned int amount)
 	if (this->energyPoints > 0)
 	{
 		this->energyPoints -= 1;
-		this->message("Unkown", "REPAIR", amount);
+		this->message("ClapTrap", "Unkown", "REPAIR", amount);
 		this->hitPoints += (int)amount;
 	}
 	else
 	{
-		this->message("Unkwon", "NOENERGY_REPAIR", amount);
+		this->message("ClapTrap", "Unkwon", "NOENERGY_REPAIR", amount);
 		return ;
 	}
 }
 
-void ClapTrap::message(const std::string &target, const std::string type, unsigned int amount) const
+void ClapTrap::message("ClapTrap", const std::string &target, const std::string type, unsigned int amount) const
 {
 	std::cout << "ClapTrap " << this->name;
 	if (type == "ATTACK")
@@ -105,13 +105,13 @@ void ClapTrap::message(const std::string &target, const std::string type, unsign
 	else if (type == "NOENERGY_ATTACK")
 		std::cout << " has no energy to attack...\n";
 	else if (type == "CREATED")
-		std::cout << " was created by deault constructor!\n";
+		std::cout << " was created by default constructor!\n";
 	else if (type == "CREATEDN")
 		std::cout << " was created by constructor with name!\n";
 	else if (type == "CREATEDC")
 		std::cout << " was created by copy constructor!\n";
-	else if (type == "DESTROIED")
-		std::cout << " has been destroied :(\n";
+	else if (type == "DESTROYED")
+		std::cout << " has been DESTROYED :(\n";
 	else if (type == "ALREADYDEAD")
 		std::cout << " has been dead a while ago...\n";
 	else if (type == "COPYOPERATER")

@@ -6,19 +6,27 @@
 
 ScavTrap::ScavTrap()
 {
-	this->name = "Unkown";
-	this->hitPoints = 10;
-	this->energyPoints = 10;
-	this->attackDamage = 0;
-	this->message("Unknown", "CREATED", 0);
+	this->hitPoints = 100;
+	this->energyPoints = 50;
+	this->attackDamage = 20;
+	this->message("ScavTrap", "Unknown", "CREATED", 0);
 }
 
-ScavTrap::ScavTrap(std::string name)
+ScavTrap::ScavTrap(std::string name): ClapTrap(name)
 {
+	this->hitPoints = 100;
+	this->energyPoints = 50;
+	this->attackDamage = 20;
+	this->message("ScavTrap", "Unknown", "CREATEDN", 0);
 }
 
-ScavTrap::ScavTrap( const ScavTrap & src )
+ScavTrap::ScavTrap( const ScavTrap & src ): ClapTrap(src)
 {
+	this->name = src.getName();
+	this->hitPoints = src.getHitPts();
+	this->energyPoints = src.getEnergyPts();
+	this->attackDamage = src.getAttackDmg();
+	this->message("ScavTrap", "Unknown", "CREATEDC", 0);
 }
 
 
@@ -28,6 +36,7 @@ ScavTrap::ScavTrap( const ScavTrap & src )
 
 ScavTrap::~ScavTrap()
 {
+	this->message("ScavTrap", "Unknown", "DESTROYED", 0);
 }
 
 
@@ -35,19 +44,15 @@ ScavTrap::~ScavTrap()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-ScavTrap &				ScavTrap::operator=( ScavTrap const & rhs )
+void ScavTrap::operator=( ScavTrap const & rhs )
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
-	return *this;
-}
-
-std::ostream &			operator<<( std::ostream & o, ScavTrap const & i )
-{
-	//o << "Value = " << i.getValue();
-	return o;
+	if ( this != &rhs )
+	{
+		this->name = rhs.getName();
+		this->hitPoints = rhs.getHitPts();
+		this->energyPoints = rhs.getEnergyPts();
+		this->attackDamage = rhs.getAttackDmg();
+	}
 }
 
 
@@ -55,6 +60,10 @@ std::ostream &			operator<<( std::ostream & o, ScavTrap const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
+void ScavTrap::guardGate()
+{
+	std::cout << "ScavTrap: " << this->name << " is now in Gate keeper mode\n";
+}
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------

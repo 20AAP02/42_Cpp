@@ -1,17 +1,19 @@
 #include <ClapTrap.hpp>
+#include <ScavTrap.hpp>
 
 int main()
 {
-	ClapTrap a("Joe");
-	ClapTrap b("Richard");
-	ClapTrap c("Elizabeth");
-	ClapTrap x;
-	ClapTrap l(c);
+	ScavTrap a("Joe");
+	ScavTrap b("Richard");
+	ScavTrap c("Elizabeth");
+	ScavTrap x;
+	ScavTrap l(c);
 	
 	a.attack(b.getName());
 	b.takeDamage(a.getAttackDmg());
 	c.takeDamage(50);
 	x = a;
 	x.attack(c.getName());
+	x.guardGate();
 	return 0;
 }
