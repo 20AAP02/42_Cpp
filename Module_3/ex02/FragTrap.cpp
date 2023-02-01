@@ -6,10 +6,27 @@
 
 FragTrap::FragTrap()
 {
+	this->hitPoints = 100;
+	this->energyPoints = 100;
+	this->attackDamage = 30;
+	std::cout << "FragTrap " << this->name << " was created by default constructor!\n";
 }
 
-FragTrap::FragTrap( const FragTrap & src )
+FragTrap::FragTrap(std::string name): ClapTrap(name)
 {
+	this->hitPoints = 100;
+	this->energyPoints = 100;
+	this->attackDamage = 30;
+	std::cout << "FragTrap " << this->name << " was created by constructor with name!\n";
+}
+
+FragTrap::FragTrap( const FragTrap & src ): ClapTrap(src)
+{
+	this->name = src.getName();
+	this->hitPoints = src.getHitPts();
+	this->energyPoints = src.getEnergyPts();
+	this->attackDamage = src.getAttackDmg();
+	std::cout << "FragTrap " << this->name << " was created by copy constructor!\n";
 }
 
 
@@ -19,6 +36,7 @@ FragTrap::FragTrap( const FragTrap & src )
 
 FragTrap::~FragTrap()
 {
+	std::cout << "FragTrap " << this->name << " has been destroyed :(\n";
 }
 
 
@@ -26,19 +44,16 @@ FragTrap::~FragTrap()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-FragTrap &				FragTrap::operator=( FragTrap const & rhs )
+void FragTrap::operator=( FragTrap const & rhs )
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
-	return *this;
-}
-
-std::ostream &			operator<<( std::ostream & o, FragTrap const & i )
-{
-	//o << "Value = " << i.getValue();
-	return o;
+	if ( this != &rhs )
+	{
+		this->name = rhs.getName();
+		this->hitPoints = rhs.getHitPts();
+		this->energyPoints = rhs.getEnergyPts();
+		this->attackDamage = rhs.getAttackDmg();
+		std::cout << "FragTrap " << this->name << " called copy assigment operator\n";
+	}
 }
 
 
@@ -46,6 +61,10 @@ std::ostream &			operator<<( std::ostream & o, FragTrap const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
+void FragTrap::highFivesGuys(void)
+{
+	std::cout << "FragTrap " << this->name << ", hight five?\n";
+}
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------

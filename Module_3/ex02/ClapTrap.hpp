@@ -22,7 +22,6 @@ public:
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
 
-	void message(const std::string cls, const std::string &target, const std::string type, unsigned int amount) const;
 	std::string getName() const;
 	int getHitPts() const;
 	int getEnergyPts() const;

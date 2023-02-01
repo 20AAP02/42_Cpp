@@ -1,32 +1,32 @@
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-ScavTrap::ScavTrap()
+FragTrap::FragTrap()
 {
 	this->hitPoints = 100;
-	this->energyPoints = 50;
-	this->attackDamage = 20;
-	this->message("ScavTrap", "Unknown", "CREATED", 0);
+	this->energyPoints = 100;
+	this->attackDamage = 30;
+	std::cout << "FragTrap " << this->name << " was created by default constructor!\n";
 }
 
-ScavTrap::ScavTrap(std::string name): ClapTrap(name)
+FragTrap::FragTrap(std::string name): ClapTrap(name)
 {
 	this->hitPoints = 100;
-	this->energyPoints = 50;
-	this->attackDamage = 20;
-	this->message("ScavTrap", "Unknown", "CREATEDN", 0);
+	this->energyPoints = 100;
+	this->attackDamage = 30;
+	std::cout << "FragTrap " << this->name << " was created by constructor with name!\n";
 }
 
-ScavTrap::ScavTrap( const ScavTrap & src ): ClapTrap(src)
+FragTrap::FragTrap( const FragTrap & src ): ClapTrap(src)
 {
 	this->name = src.getName();
 	this->hitPoints = src.getHitPts();
 	this->energyPoints = src.getEnergyPts();
 	this->attackDamage = src.getAttackDmg();
-	this->message("ScavTrap", "Unknown", "CREATEDC", 0);
+	std::cout << "FragTrap " << this->name << " was created by copy constructor!\n";
 }
 
 
@@ -34,9 +34,9 @@ ScavTrap::ScavTrap( const ScavTrap & src ): ClapTrap(src)
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-ScavTrap::~ScavTrap()
+FragTrap::~FragTrap()
 {
-	this->message("ScavTrap", "Unknown", "DESTROYED", 0);
+	std::cout << "FragTrap " << this->name << " has been destroyed :(\n";
 }
 
 
@@ -44,7 +44,7 @@ ScavTrap::~ScavTrap()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-void ScavTrap::operator=( ScavTrap const & rhs )
+void FragTrap::operator=( FragTrap const & rhs )
 {
 	if ( this != &rhs )
 	{
@@ -52,6 +52,7 @@ void ScavTrap::operator=( ScavTrap const & rhs )
 		this->hitPoints = rhs.getHitPts();
 		this->energyPoints = rhs.getEnergyPts();
 		this->attackDamage = rhs.getAttackDmg();
+		std::cout << "FragTrap " << this->name << " called copy assigment operator\n";
 	}
 }
 
@@ -60,9 +61,9 @@ void ScavTrap::operator=( ScavTrap const & rhs )
 ** --------------------------------- METHODS ----------------------------------
 */
 
-void ScavTrap::guardGate()
+void FragTrap::highFivesGuys(void)
 {
-	std::cout << "ScavTrap: " << this->name << " is now in Gate keeper mode\n";
+	std::cout << "FragTrap " << this->name << ", hight five?\n";
 }
 
 /*

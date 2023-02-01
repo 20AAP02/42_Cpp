@@ -9,7 +9,7 @@ ScavTrap::ScavTrap()
 	this->hitPoints = 100;
 	this->energyPoints = 50;
 	this->attackDamage = 20;
-	this->message("ScavTrap", "Unknown", "CREATED", 0);
+	std::cout << "ScavTrap " << this->name << " was created by default constructor!\n";
 }
 
 ScavTrap::ScavTrap(std::string name): ClapTrap(name)
@@ -17,7 +17,7 @@ ScavTrap::ScavTrap(std::string name): ClapTrap(name)
 	this->hitPoints = 100;
 	this->energyPoints = 50;
 	this->attackDamage = 20;
-	this->message("ScavTrap", "Unknown", "CREATEDN", 0);
+	std::cout << "ScavTrap " << this->name << " was created by constructor with name!\n";
 }
 
 ScavTrap::ScavTrap( const ScavTrap & src ): ClapTrap(src)
@@ -26,7 +26,7 @@ ScavTrap::ScavTrap( const ScavTrap & src ): ClapTrap(src)
 	this->hitPoints = src.getHitPts();
 	this->energyPoints = src.getEnergyPts();
 	this->attackDamage = src.getAttackDmg();
-	this->message("ScavTrap", "Unknown", "CREATEDC", 0);
+	std::cout << "ScavTrap " << this->name << " was created by copy constructor!\n";
 }
 
 
@@ -36,7 +36,7 @@ ScavTrap::ScavTrap( const ScavTrap & src ): ClapTrap(src)
 
 ScavTrap::~ScavTrap()
 {
-	this->message("ScavTrap", "Unknown", "DESTROYED", 0);
+	std::cout << "ScavTrap " << this->name << " has been destroyed :(\n";
 }
 
 
@@ -52,7 +52,7 @@ void ScavTrap::operator=( ScavTrap const & rhs )
 		this->hitPoints = rhs.getHitPts();
 		this->energyPoints = rhs.getEnergyPts();
 		this->attackDamage = rhs.getAttackDmg();
-		this->message("ScavTrap", "Unknown", "COPYOPERATER", 0);
+		std::cout << "ScavTrap " << this->name << " called copy assigment operator\n";
 	}
 }
 
@@ -60,6 +60,20 @@ void ScavTrap::operator=( ScavTrap const & rhs )
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
+
+void ScavTrap::attack(const std::string &target)
+{
+	if (this->energyPoints > 0)
+	{
+		this->energyPoints -= 1;
+		std::cout << "ScavTrap " << this->name << " attacks " << target << ", causing " << this->attackDamage << " points of damage!\n";
+	}
+	else
+	{
+		std::cout << "ScavTrap " << this->name << " has no energy to attack...\n";
+		return ;
+	}
+}
 
 void ScavTrap::guardGate()
 {

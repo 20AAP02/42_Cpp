@@ -132,8 +132,7 @@ Fixed Fixed::operator *(const Fixed &F)
 
 Fixed Fixed::operator /(const Fixed &F)
 {
-	Fixed ex;
-	ex.setRawBits(value * F.getRawBits());
+	Fixed ex(this->toFloat() / F.toFloat());
 	return ex;
 }
 
