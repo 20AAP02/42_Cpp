@@ -52,7 +52,6 @@ void ScavTrap::operator=( ScavTrap const & rhs )
 		this->hitPoints = rhs.getHitPts();
 		this->energyPoints = rhs.getEnergyPts();
 		this->attackDamage = rhs.getAttackDmg();
-		this->message("ScavTrap", "Unknown", "COPYOPERATER", 0);
 	}
 }
 
@@ -63,7 +62,7 @@ void ScavTrap::operator=( ScavTrap const & rhs )
 
 void ScavTrap::guardGate()
 {
-	std::cout << "ScavTrap " << this->name << " is now in Gate keeper mode\n";
+	std::cout << "ScavTrap: " << this->name << " is now in Gate keeper mode\n";
 }
 
 /*
