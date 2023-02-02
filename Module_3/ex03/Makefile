@@ -1,5 +1,5 @@
 CC			= 	g++ -std=c++98
-CFLAGS		= 	-Wall -Wextra -Werror
+CFLAGS		= 	-Wall -Wextra -Werror -Wshadow -Wno-shadow
 CSWITCH		=	-Wimplicit-fallthrough=0
 RM			= 	/bin/rm -f
 NAME		= 	clapTrap
