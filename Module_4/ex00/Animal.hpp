@@ -15,9 +15,10 @@ class Animal
 		Animal( Animal const & src );
 		~Animal();
 
-		void		operator=( Animal const & rhs );
-		void setType(std::string type);
+		Animal		&operator=( Animal const & rhs );
+
 		std::string getType() const;
+		void makeSound() const;
 
 	private:
 
