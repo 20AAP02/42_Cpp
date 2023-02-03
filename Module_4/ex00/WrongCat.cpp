@@ -1,18 +1,18 @@
-#include "Dog.hpp"
+#include "WrongCat.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Dog::Dog()
+WrongCat::WrongCat()
 {
-	this->type = "Dog";
-	std::cout << "Dog: Default constructor called\n";
+	this->type = "WrongCat";
+	std::cout << "WrongCat: Default constructor called\n";
 }
 
-Dog::Dog( const Dog & src ): Animal(src)
+WrongCat::WrongCat( const WrongCat & src ): WrongAnimal(src)
 {
-	std::cout << "Dog: Copy constructor called\n";
+	std::cout << "WrongCat: Copy constructor called\n";
 }
 
 
@@ -20,9 +20,9 @@ Dog::Dog( const Dog & src ): Animal(src)
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-Dog::~Dog()
+WrongCat::~WrongCat()
 {
-	std::cout << "Dog: Deconstructor called\n";
+	std::cout << "WrongCat: Deconstructor called\n";
 }
 
 
@@ -30,12 +30,12 @@ Dog::~Dog()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Dog &				Dog::operator=( Dog const & rhs )
+WrongCat &				WrongCat::operator=( WrongCat const & rhs )
 {
 	if ( this != &rhs )
 	{
 		this->type = rhs.type;
-		std::cout << "Dog: Copy assignment operator called\n";
+		std::cout << "WrongCat: Copy assignment operator called\n";
 	}
 	return *this;
 }
@@ -45,9 +45,9 @@ Dog &				Dog::operator=( Dog const & rhs )
 ** --------------------------------- METHODS ----------------------------------
 */
 
-void Dog::makeSound() const
+void WrongCat::makeSound() const
 {
-	std::cout << "Dog: made sound\n";
+	std::cout << "WrongCat: made sound\n";
 }
 
 /*

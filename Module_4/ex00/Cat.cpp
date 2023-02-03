@@ -40,6 +40,10 @@ Cat &				Cat::operator=( Cat const & rhs )
 	return *this;
 }
 
+void Cat::makeSound() const
+{
+	std::cout << "Cat: made sound\n";
+}
 
 /*
 ** --------------------------------- METHODS ----------------------------------

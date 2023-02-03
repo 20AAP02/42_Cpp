@@ -1,20 +1,19 @@
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Animal::Animal()
+WrongAnimal::WrongAnimal()
 {
-	this->type = "Animal";
-	std::cout << "Animal: Default constructor called\n";
+	this->type = "WrongAnimal";
+	std::cout << "WrongAnimal: Default constructor called\n";
 }
 
-Animal::Animal( const Animal & src )
+WrongAnimal::WrongAnimal( const WrongAnimal & src )
 {
 	this->type = src.type;
-	std::cout << "Animal: Copy constructor called\n";
-
+	std::cout << "WrongAnimal: Copy constructor called\n";
 }
 
 
@@ -22,9 +21,9 @@ Animal::Animal( const Animal & src )
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-Animal::~Animal()
+WrongAnimal::~WrongAnimal()
 {
-	std::cout << "Animal: Deconstructor called\n";
+	std::cout << "WrongAnimal: Deconstructor called\n";
 }
 
 
@@ -32,29 +31,28 @@ Animal::~Animal()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Animal				&Animal::operator=( Animal const & rhs )
+WrongAnimal &				WrongAnimal::operator=( WrongAnimal const & rhs )
 {
 	if ( this != &rhs )
 	{
 		this->type = rhs.type;
-		std::cout << "Animal: Copy assignment operator called\n";
+		std::cout << "WrongAnimal: Copy assignment operator called\n";
 	}
 	return *this;
 }
-
 
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
 
-std::string Animal::getType() const
+std::string WrongAnimal::getType() const
 {
 	return this->type;
 }
 
-void Animal::makeSound() const
+void WrongAnimal::makeSound() const
 {
-	std::cout << "Animal: made sound\n";
+	std::cout << "WrongAnimal: made sound\n";
 }
 
 /*
