@@ -4,11 +4,10 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-DiamondTrap::DiamondTrap()
+DiamondTrap::DiamondTrap(): ClapTrap("Unkown_clap_name")
 {
 	this->name = "Unkown";
-	this->ClapTrap::name += "_clap_name";
-	this->energyPoints = this->ScavTrap::energyPoints;
+	this->energyPoints = ScavTrap().getEnergyPts();
 	std::cout << "DiamondTrap " << this->name << " was created by default constructor!\n";
 
 }
@@ -16,7 +15,7 @@ DiamondTrap::DiamondTrap()
 DiamondTrap::DiamondTrap( std::string name ): ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name)
 {
 	this->name = name;
-	this->energyPoints = this->ScavTrap::energyPoints;
+	this->energyPoints = ScavTrap().getEnergyPts();
 	std::cout << "DiamondTrap " << this->name << " was created by constructor with name!\n";
 }
 
