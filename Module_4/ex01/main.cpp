@@ -14,8 +14,7 @@ int main()
 		animals[i] = new Dog();
 	for (int i = SIZE / 2; i < SIZE; i++)
 		animals[i] = new Cat();
-	std::cout << "------ Methods ------\n";
-	animals[0]->getIdea(0);
+	std::cout << "------ Methods ------\n";\
 	std::cout << "------ Deconstructors ------\n";
 	for (int i = 0; i < SIZE; i++)
 		delete animals[i];
