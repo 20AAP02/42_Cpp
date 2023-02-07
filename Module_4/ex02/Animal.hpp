@@ -9,17 +9,17 @@ class Animal
 {
 	protected:
 		std::string type;
+		Animal();
+		Animal( Animal const & src );
 
 	public:
 
-		Animal();
-		Animal( Animal const & src );
 		virtual ~Animal();
 
 		Animal		&operator=( Animal const & rhs );
 
 		std::string getType() const;
-		virtual void makeSound() const;
+		virtual void makeSound() const = 0;
 
 	private:
 

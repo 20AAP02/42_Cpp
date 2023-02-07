@@ -15,6 +15,8 @@ int main()
 	for (int i = SIZE / 2; i < SIZE; i++)
 		animals[i] = new Cat();
 	std::cout << "------ Methods ------\n";
+	// Animal a;
+	// const Animal *a = new Animal();
 	((Dog *)animals[0])->setIdea(0, "Im a dog!");
 	Dog dog = *((Dog *)animals[0]);
 	std::cout << "--- Ideas after copy ---\n";
