@@ -7,7 +7,7 @@
 Bureaucrat::Bureaucrat(): name("NoName")
 {
 	this->grade = 150;
-	std::cout << "Bureaucrat: " << this->name << ", called default constructor\n";
+	std::cout << "Bureaucrat: " << this->name << ", called constructor\n";
 }
 
 Bureaucrat::Bureaucrat(const std::string name, const int grade): name(name)
@@ -17,7 +17,7 @@ Bureaucrat::Bureaucrat(const std::string name, const int grade): name(name)
 	std::cout << "Bureaucrat: " << this->name << ", called constructor\n";
 }
 
-Bureaucrat::Bureaucrat( const Bureaucrat & src ): name(src.getName())
+Bureaucrat::Bureaucrat( const Bureaucrat & src )
 {
 	this->grade = src.getGrade();
 	std::cout << "Bureaucrat: " << this->name << ", called copy constructor\n";
