@@ -10,7 +10,7 @@ class Form
 
 	public:
 
-		Form(const std::string name, const int requiredGradeToSign, int requiredGradeToExecute);
+		Form(const std::string name, const int gradeSgn, const int gradeExc);
 		Form( Form const & src );
 		~Form();
 
@@ -18,17 +18,36 @@ class Form
 
 		std::string getName() const;
 		bool isSigned() const;
-		int getRequiredGradeToSign() const;
-		int getRequiredGradeToExecute() const;
+		int getRqdGradeToSgn() const;
+		int getRqdGradeToExc() const;
 
-		void beSigned(Bureaucrat bureaucrat);
+		void beSigned(Bureaucrat &bureaucrat);
+
+		class GradeTooHighException: public std::exception
+		{
+			public:
+				virtual const char *what() const throw()
+				{
+					return ("Grade too high!");
+				}
+		};
+
+		class GradeTooLowException: public std::exception
+		{
+			public:
+				virtual const char *what() const throw()
+				{
+					return ("Grade too low!");
+				}
+		};
 
 	private:
 		Form();
 		const std::string name;
 		bool _signed;
-		const int requiredGradeToSign;
-		const int requiredGradeToExecute;
+		const int _rqdGradeToSgn;
+		const int _rqdGradeToExc;
+		void testGrade(int grade) const;
 
 };
 
