@@ -44,7 +44,7 @@ class AForm
 		};
 		
 		void execute(Bureaucrat const &executor) const;
-		virtual void func() const = 0;
+		virtual void action() const = 0;
 
 	private:
 		AForm();

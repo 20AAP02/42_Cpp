@@ -63,8 +63,25 @@ std::ostream &			operator<<( std::ostream & o, ShrubberyCreationForm const & i )
 
 std::string ShrubberyCreationForm::getTarget() const { return this->_target; }
 
-void ShrubberyCreationForm::func() const
-{}
+void ShrubberyCreationForm::action() const
+{
+	std::string fileName = this->_target + "_shrubbery";
+	std::ofstream file(fileName.c_str(), std::ios::out);
+
+	file << "               ,@@@@@@@,                                   @@@,@@@@@@@\n";
+	file << "       ,,,.   ,@@@@@@/@@,  .oo8888o.                        ,'@@ \\\\-@@@@@@@@\n";
+	file << "    ,&@@&@&&@,@@@@@/@@@@@@,8888\\88/8o                ;@@@@@@@@@@_@@@@\"\n";
+	file << "   ,@&\\@&&@&&@,@@@\\@@@/@@@88\\88888/88'              ,@@@@@@@@@@\\@_.@@@@@.\n";
+	file << "   @&&@&@&/@&&@@@\\@@/ /@@@88888\\88888'               @ @@@, ,@@@@@@@@@@'\n";
+	file << "   @&&@/ @&@@&&@@\\ V /@@' `88\\8 `/88'              @^@@@@@,@@@@ @\\|,@@@@,_\n";
+	file << "   `&@\\ ` /@&'    |.|        \\ '|8'                     @@@@@@\\/ #@.-\"@@@@\n";
+	file << "       |o|        | |         | |                             @@/  / @@,\n";
+	file << "       |.|        | |         | |                              /  /\n";
+	file << "    __/___\\______/___\\_______/___\\____________________________/  /___________\n\n";
+	file << "  ------------------------------  ASCII TREES ------------------------------------\n";
+	file << " ___________________________________________________________________________________\n";
+	file.close();
+}
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------

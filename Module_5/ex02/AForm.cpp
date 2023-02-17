@@ -84,13 +84,12 @@ void AForm::execute(Bureaucrat const &executor) const
 	if (executor.getGrade() <= this->_rqdGradeToSgn)
 	{
 		if (executor.getGrade() <= this->_rqdGradeToExc)
-			this->func();
+			this->action();
 		else
-			throw GradeTooHighException();
+			throw GradeTooLowException();
 	}
 	else
-		throw GradeTooHighException();
-
+		throw GradeTooLowException();
 }
 
 /*

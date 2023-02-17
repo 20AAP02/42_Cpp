@@ -18,7 +18,7 @@ class RobotomyRequestForm: public AForm
 		std::string getTarget() const;
 		
 		void execute(Bureaucrat const &executor) const;
-		void func() const;
+		void action() const;
 
 	private:
 		RobotomyRequestForm();

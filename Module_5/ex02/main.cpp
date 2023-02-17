@@ -6,12 +6,16 @@
 
 int main()
 {
-	const AForm *a = new ShrubberyCreationForm("home");
-	const AForm *c = new RobotomyRequestForm("home");
-	const AForm *b = new PresidentialPardonForm("home");
+	std::cout << "---------- Constructors ------------\n";
+	const Bureaucrat a("Joe", 1);
+	const AForm *_a = new ShrubberyCreationForm("home");
+	const AForm *_c = new RobotomyRequestForm("home");
+	const AForm *_b = new PresidentialPardonForm("home");
+	std::cout << "---------- Methods -----------------\n";
+	_a->execute(a);
 	std::cout << "---------- Destructors -------------\n";
-	delete a;
-	delete b;
-	delete c;
+	delete _a;
+	delete _b;
+	delete _c;
 	return 0;
 }

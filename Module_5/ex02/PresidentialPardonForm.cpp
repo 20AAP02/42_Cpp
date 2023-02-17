@@ -63,7 +63,7 @@ std::ostream &			operator<<( std::ostream & o, PresidentialPardonForm const & i 
 
 std::string PresidentialPardonForm::getTarget() const { return this->_target; }
 
-void PresidentialPardonForm::func() const
+void PresidentialPardonForm::action() const
 {}
 
 /*

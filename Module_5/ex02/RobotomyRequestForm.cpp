@@ -62,7 +62,7 @@ std::ostream &			operator<<( std::ostream & o, RobotomyRequestForm const & i )
 
 std::string RobotomyRequestForm::getTarget() const { return this->_target; }
 
-void RobotomyRequestForm::func() const
+void RobotomyRequestForm::action() const
 {}
 
 /*
