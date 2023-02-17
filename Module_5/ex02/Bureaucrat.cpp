@@ -77,7 +77,7 @@ void Bureaucrat::decrement()
 	std::cout << "Bureaucrat: " << this->name << ", decremented level\n";
 }
 
-void Bureaucrat::signForm(Form &form) const
+void Bureaucrat::signForm(AForm &form) const
 {
 	try
 	{

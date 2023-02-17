@@ -7,16 +7,16 @@
 
 class Bureaucrat;
 
-class Form
+class AForm
 {
 
 	public:
 
-		Form(const std::string name, const int gradeSgn, const int gradeExc);
-		Form( Form const & src );
-		~Form();
+		AForm(const std::string name, const int gradeSgn, const int gradeExc);
+		AForm( AForm const & src );
+		~AForm();
 
-		Form &		operator=( Form const & rhs );
+		AForm &		operator=( AForm const & rhs );
 
 		std::string getName() const;
 		bool isSigned() const;
@@ -44,15 +44,15 @@ class Form
 		};
 
 	private:
-		Form();
+		AForm();
 		const std::string name;
 		bool _signed;
 		const int _rqdGradeToSgn;
 		const int _rqdGradeToExc;
-		void testGrade(int grade) const;
+		virtual void testGrade(int grade) const = 0;
 
 };
 
-std::ostream &			operator<<( std::ostream & o, Form const & i );
+std::ostream &			operator<<( std::ostream & o, AForm const & i );
 
-#endif /* ************************************************************ FORM_H */
+#endif /* ************************************************************ AFORM_H */

@@ -1,27 +1,27 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Form::Form(): name("default"), _rqdGradeToSgn(1), _rqdGradeToExc(1)
+AForm::AForm(): name("default"), _rqdGradeToSgn(1), _rqdGradeToExc(1)
 {
 	this->_signed = false;
-	std::cout << "Form: default constructor called\n";
+	std::cout << "AForm: default constructor called\n";
 }
 
-Form::Form(const std::string name, const int gradeSgn, const int gradeExc): name(name), _rqdGradeToSgn(gradeSgn), _rqdGradeToExc(gradeExc)
+AForm::AForm(const std::string name, const int gradeSgn, const int gradeExc): name(name), _rqdGradeToSgn(gradeSgn), _rqdGradeToExc(gradeExc)
 {
 	this->testGrade(gradeSgn);
 	this->testGrade(gradeExc);
 	this->_signed = false;
-	std::cout << "Form: constructor called\n";
+	std::cout << "AForm: constructor called\n";
 }
 
-Form::Form( const Form & src ): name(src.name), _rqdGradeToSgn(src.getRqdGradeToSgn()), _rqdGradeToExc(src.getRqdGradeToExc())
+AForm::AForm( const AForm & src ): name(src.name), _rqdGradeToSgn(src.getRqdGradeToSgn()), _rqdGradeToExc(src.getRqdGradeToExc())
 {
 	this->_signed = src.isSigned();
-	std::cout << "Form: copy constructor called\n";
+	std::cout << "AForm: copy constructor called\n";
 }
 
 
@@ -29,9 +29,9 @@ Form::Form( const Form & src ): name(src.name), _rqdGradeToSgn(src.getRqdGradeTo
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-Form::~Form()
+AForm::~AForm()
 {
-	std::cout << "Form: deconstructor called\n";
+	std::cout << "AForm: deconstructor called\n";
 }
 
 
@@ -39,19 +39,19 @@ Form::~Form()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Form &				Form::operator=( Form const & rhs )
+AForm &				AForm::operator=( AForm const & rhs )
 {
 	if ( this != &rhs )
 	{
 		this->_signed = rhs.isSigned();
 	}
-	std::cout << "Form: copy assignment called\n";
+	std::cout << "AForm: copy assignment called\n";
 	return *this;
 }
 
-std::ostream &			operator<<( std::ostream & o, Form const & i )
+std::ostream &			operator<<( std::ostream & o, AForm const & i )
 {
-	o << "Form " << i.getName() << " info:\n";
+	o << "AForm " << i.getName() << " info:\n";
 	o << "Signed: " << i.isSigned() << std::endl;
 	o << "Required grade to sign: " << i.getRqdGradeToSgn() << std::endl;
 	o << "Required grade to execute: " << i.getRqdGradeToExc() << std::endl;
@@ -63,15 +63,15 @@ std::ostream &			operator<<( std::ostream & o, Form const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
-std::string Form::getName() const { return this->name; }
+std::string AForm::getName() const { return this->name; }
 
-bool Form::isSigned() const { return this->_signed; }
+bool AForm::isSigned() const { return this->_signed; }
 
-int Form::getRqdGradeToSgn() const { return this->_rqdGradeToSgn; }
+int AForm::getRqdGradeToSgn() const { return this->_rqdGradeToSgn; }
 
-int Form::getRqdGradeToExc() const { return this->_rqdGradeToExc; }
+int AForm::getRqdGradeToExc() const { return this->_rqdGradeToExc; }
 
-void Form::beSigned(Bureaucrat const &bureaucrat)
+void AForm::beSigned(Bureaucrat const &bureaucrat)
 {
 	if (bureaucrat.getGrade() <= this->_rqdGradeToSgn)
 		this->_signed = true;
@@ -83,7 +83,7 @@ void Form::beSigned(Bureaucrat const &bureaucrat)
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
-void Form::testGrade(int grade) const
+void AForm::testGrade(int grade) const
 {
 	if (grade < 1)
 		throw GradeTooHighException();
