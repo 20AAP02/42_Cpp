@@ -25,7 +25,7 @@ Cat::Cat( const Cat & src ): Animal(src)
 Cat::~Cat()
 {
 	delete this->brain;
-	std::cout << "Cat: Deconstructor called\n";
+	std::cout << "Cat: destructor called\n";
 }
 
 

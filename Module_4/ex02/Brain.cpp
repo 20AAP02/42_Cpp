@@ -23,7 +23,7 @@ Brain::Brain( const Brain & src )
 
 Brain::~Brain()
 {
-	std::cout << "Brain: Deconstructor called\n";
+	std::cout << "Brain: destructor called\n";
 }
 
 

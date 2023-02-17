@@ -22,7 +22,7 @@ Dog::Dog( const Dog & src ): Animal(src)
 
 Dog::~Dog()
 {
-	std::cout << "Dog: Deconstructor called\n";
+	std::cout << "Dog: destructor called\n";
 }
 
 

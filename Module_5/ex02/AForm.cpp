@@ -31,7 +31,7 @@ AForm::AForm( const AForm & src ): name(src.name), _rqdGradeToSgn(src.getRqdGrad
 
 AForm::~AForm()
 {
-	std::cout << "AForm: deconstructor called\n";
+	std::cout << "AForm: destructor called\n";
 }
 
 
@@ -77,6 +77,20 @@ void AForm::beSigned(Bureaucrat const &bureaucrat)
 		this->_signed = true;
 	else
 		throw GradeTooLowException();
+}
+
+void AForm::execute(Bureaucrat const &executor) const
+{
+	if (executor.getGrade() <= this->_rqdGradeToSgn)
+	{
+		if (executor.getGrade() <= this->_rqdGradeToExc)
+			this->func();
+		else
+			throw GradeTooHighException();
+	}
+	else
+		throw GradeTooHighException();
+
 }
 
 /*

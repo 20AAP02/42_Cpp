@@ -14,7 +14,7 @@ class AForm
 
 		AForm(const std::string name, const int gradeSgn, const int gradeExc);
 		AForm( AForm const & src );
-		~AForm();
+		virtual ~AForm();
 
 		AForm &		operator=( AForm const & rhs );
 
@@ -42,6 +42,9 @@ class AForm
 					return ("Grade too low!");
 				}
 		};
+		
+		void execute(Bureaucrat const &executor) const;
+		virtual void func() const = 0;
 
 	private:
 		AForm();
@@ -49,7 +52,7 @@ class AForm
 		bool _signed;
 		const int _rqdGradeToSgn;
 		const int _rqdGradeToExc;
-		virtual void testGrade(int grade) const = 0;
+		void testGrade(int grade) const;
 
 };
 

@@ -3,19 +3,26 @@
 
 # include <iostream>
 # include <string>
+# include <AForm.hpp>
 
-class RobotomyRequestForm
+class RobotomyRequestForm: public AForm
 {
 
 	public:
-
-		RobotomyRequestForm();
 		RobotomyRequestForm( RobotomyRequestForm const & src );
+		RobotomyRequestForm(std::string target);
 		~RobotomyRequestForm();
 
 		RobotomyRequestForm &		operator=( RobotomyRequestForm const & rhs );
 
+		std::string getTarget() const;
+		
+		void execute(Bureaucrat const &executor) const;
+		void func() const;
+
 	private:
+		RobotomyRequestForm();
+		std::string _target;
 
 };
 

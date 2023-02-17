@@ -24,7 +24,7 @@ Dog::Dog( const Dog & src ): Animal(src)
 Dog::~Dog()
 {
 	delete this->brain;
-	std::cout << "Dog: Deconstructor called\n";
+	std::cout << "Dog: destructor called\n";
 }
 
 

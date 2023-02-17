@@ -3,19 +3,26 @@
 
 # include <iostream>
 # include <string>
+# include <AForm.hpp>
 
-class PresidentialPardonForm
+class PresidentialPardonForm: public AForm
 {
 
 	public:
-
-		PresidentialPardonForm();
 		PresidentialPardonForm( PresidentialPardonForm const & src );
+		PresidentialPardonForm(std::string target);
 		~PresidentialPardonForm();
 
 		PresidentialPardonForm &		operator=( PresidentialPardonForm const & rhs );
 
+		std::string getTarget() const;
+
+		void execute(Bureaucrat const &executor) const;
+		void func() const;
+
 	private:
+		PresidentialPardonForm();
+		std::string _target;
 
 };
 

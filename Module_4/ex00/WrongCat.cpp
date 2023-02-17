@@ -22,7 +22,7 @@ WrongCat::WrongCat( const WrongCat & src ): WrongAnimal(src)
 
 WrongCat::~WrongCat()
 {
-	std::cout << "WrongCat: Deconstructor called\n";
+	std::cout << "WrongCat: destructor called\n";
 }
 
 

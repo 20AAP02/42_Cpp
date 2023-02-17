@@ -24,7 +24,7 @@ Animal::Animal( const Animal & src )
 
 Animal::~Animal()
 {
-	std::cout << "Animal: Deconstructor called\n";
+	std::cout << "Animal: destructor called\n";
 }
 
 

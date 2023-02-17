@@ -23,7 +23,7 @@ WrongAnimal::WrongAnimal( const WrongAnimal & src )
 
 WrongAnimal::~WrongAnimal()
 {
-	std::cout << "WrongAnimal: Deconstructor called\n";
+	std::cout << "WrongAnimal: destructor called\n";
 }
 
 

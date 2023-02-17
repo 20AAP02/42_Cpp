@@ -30,7 +30,7 @@ Bureaucrat::Bureaucrat( const Bureaucrat & src ): name(src.getName())
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Bureaucrat: " << this->name << ", called deconstructor\n";
+	std::cout << "Bureaucrat: " << this->name << ", called destructor\n";
 }
 
 

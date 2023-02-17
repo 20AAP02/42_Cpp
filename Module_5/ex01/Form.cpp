@@ -31,7 +31,7 @@ Form::Form( const Form & src ): name(src.name), _rqdGradeToSgn(src.getRqdGradeTo
 
 Form::~Form()
 {
-	std::cout << "Form: deconstructor called\n";
+	std::cout << "Form: destructor called\n";
 }
 
 
