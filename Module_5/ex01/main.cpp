@@ -12,6 +12,7 @@ int main()
 		Bureaucrat d("D", 15);
 		Bureaucrat e("E", 54);
 		Bureaucrat f("F", 4);
+		std::cout << f;
 
 		Form _a("1", 34, 20);
 		Form _b("2", 80, 23);
@@ -19,6 +20,7 @@ int main()
 		Form _d("4", 15, 23);
 		Form _e("5", 67, 1);
 		Form _f("6", 46, 3);
+		std::cout << _a;
 
 		a.signForm(_a);
 		b.signForm(_b);
