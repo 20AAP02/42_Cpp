@@ -63,7 +63,15 @@ std::ostream &			operator<<( std::ostream & o, RobotomyRequestForm const & i )
 std::string RobotomyRequestForm::getTarget() const { return this->_target; }
 
 void RobotomyRequestForm::action() const
-{}
+{
+	static int percent_of_time;
+	std::cout << "Brrrrrrrr...\n";
+	if (percent_of_time == 0)
+		std::cout << "Target " << this->getTarget() << " has been robotomised\n";
+	else
+		std::cout << "Failed to robotomy target " << this->getTarget() << std::endl;
+	percent_of_time = (percent_of_time == 0);
+}
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------

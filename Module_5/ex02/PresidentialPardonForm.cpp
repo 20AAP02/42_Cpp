@@ -64,7 +64,10 @@ std::ostream &			operator<<( std::ostream & o, PresidentialPardonForm const & i 
 std::string PresidentialPardonForm::getTarget() const { return this->_target; }
 
 void PresidentialPardonForm::action() const
-{}
+{
+	std::cout << "In the name of the chief of state, Zaphod Beeblebrox, ";
+	std::cout << this->getTarget() << " is hereby pardoned!\n";
+}
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------

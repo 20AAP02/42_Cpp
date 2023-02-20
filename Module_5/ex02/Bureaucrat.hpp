@@ -43,6 +43,8 @@ class Bureaucrat
 				}
 		};
 
+		void executeForm(AForm const &form) const;
+
 	private:
 		Bureaucrat();
 		const std::string name;

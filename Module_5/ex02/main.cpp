@@ -8,11 +8,17 @@ int main()
 {
 	std::cout << "---------- Constructors ------------\n";
 	const Bureaucrat a("Joe", 1);
-	const AForm *_a = new ShrubberyCreationForm("home");
-	const AForm *_c = new RobotomyRequestForm("home");
-	const AForm *_b = new PresidentialPardonForm("home");
+	const Bureaucrat b("Jonh", 50);
+	AForm *_a = new ShrubberyCreationForm("home");
+	AForm *_b = new PresidentialPardonForm("Jonh");
+	AForm *_c = new RobotomyRequestForm("Albert");
 	std::cout << "---------- Methods -----------------\n";
-	_a->execute(a);
+
+	a.executeForm(*_a);
+	a.signForm(*_a);
+	b.executeForm(*_a);
+	b.signForm(*_c);
+
 	std::cout << "---------- Destructors -------------\n";
 	delete _a;
 	delete _b;
