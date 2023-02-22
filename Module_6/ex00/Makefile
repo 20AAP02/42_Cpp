@@ -1,7 +1,7 @@
 CC			= 	g++ -std=c++98
 CFLAGS		= 	-Wall -Wextra -Werror
 RM			= 	/bin/rm -f
-NAME		= 	conversion
+NAME		= 	convert
 
 INCLUDES	=	./
 SRCS		=	$(shell find ./ -name '*.cpp')
