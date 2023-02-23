@@ -81,7 +81,7 @@ std::string Literal::getType(const std::string arg) const
 {
 	const std::string pseudoFloats[] = {"-inff", "+inff", "nanf"};
 	const std::string pseudoDoubles[] = {"-inf", "+inf", "nan"};
-	if (std::isdigit(arg[0]) || (arg.length() > 1 && std::isdigit(arg[1])))
+	if (std::isdigit(arg[0]) || (arg.length() > 1 && std::isdigit(arg[1]) && arg[0] == '-'))
 	{
 		if (arg[arg.length() - 1] == 'f')
 			return "float";
@@ -168,7 +168,7 @@ void Literal::printValues(void)
 	else if (this->_char < 32 || this->_char == 127)
 		std::cout << "Non displayable\n";
 	else
-		std::cout << this->_char << std::endl;
+		std::cout << "'" << this->_char << "'" << std::endl;
 	std::cout << "int: ";
 	if (this->_int == 0 && (this->_double >= 1.0 || this->_double <= -1.0))
 		std::cout << "impossible\n";
@@ -196,6 +196,7 @@ void Literal::printValues(void)
 		else if (this->_double < 0.0 && !((this->_double * -1.0) - (static_cast<int>(this->_double)) > 0.0))
 			std::cout << ".0";
 	}
+	std::cout << std::endl;
 }
 
 /*
