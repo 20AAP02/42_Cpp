@@ -11,6 +11,6 @@ int main()
 	std::cout << &stringREF << std::endl;
 
 	std::cout << sentence << std::endl;
-	std::cout << *stringPTR << std::endl;
+	std::cout << stringPTR << std::endl;
 	std::cout << stringREF << std::endl;
 }

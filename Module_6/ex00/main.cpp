@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <Literal.hpp>
+#include <ScalarConverter.hpp>
 
 int main(int argc, char *argv[])
 {
@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 		std::cout << "Please give one, and only one, parameter as input\n";
 		return 0;
 	}
-	Literal a(argv[1]);
+	ScalarConverter a(argv[1]);
 	a.printValues();
 	return 0;
 }
