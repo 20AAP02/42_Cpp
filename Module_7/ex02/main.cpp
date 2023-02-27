@@ -13,13 +13,12 @@ void printArray(Array<T> arr)
 	std::cout << "}";
 }
 
-int main()
-{
-	Array<int> a;
-	Array<int> b(5);
-	Array<int> c(8);
+Array<int> a;
+Array<int> b(5);
+Array<int> c(8);
 
-	std::cout << "--- Check current state of the arrays ---\n";
+void printArrays()
+{
 	std::cout << "Array a: ";
 	printArray(a);
 	std::cout << std::endl;
@@ -29,7 +28,20 @@ int main()
 	std::cout << "Array c: ";
 	printArray(c);
 	std::cout << std::endl;
-	
+}
+
+int main()
+{
+	std::cout << "--- Check current state of the arrays ---\n";
+	printArrays();
+	std::cout << "--- Update values to zero ---\n";
+	for (std::size_t i = 0; i < a.size(); i++)
+		a[i] = 0;
+	for (std::size_t i = 0; i < b.size(); i++)
+		b[i] = 0;
+	for (std::size_t i = 0; i < c.size(); i++)
+		c[i] = 0;
+	printArrays();
 
 	return 0;
 }
