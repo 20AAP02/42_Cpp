@@ -8,9 +8,10 @@
 // # include <map>
 
 template <class T>
-T &easyfind(const T &container, const int toFind)
+T &easyfind(T &container, int toFind)
 {
-	typename T::iterator itr = std::find(container.begin(), container.end(), toFind);
+	if (std::find(container.begin(), container.end(), item) != container.end())
+	
 }
 
 #endif
