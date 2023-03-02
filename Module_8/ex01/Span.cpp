@@ -40,7 +40,7 @@ Span &				Span::operator=( Span const & rhs )
 		const std::set<int> ex = rhs.getSet();
 		int i = 0;
 		this->set.clear();
-		for (std::set<int>::iterator iter= ex.begin(); iter != ex.end() && i < (int)this->_maxSize; iter++ )
+		for (std::set<int>::iterator iter= ex.begin(); iter != ex.end() && i < (int)this->_maxSize; iter++)
 		{
 			this->set.insert(*iter);
 			i++;
@@ -53,8 +53,8 @@ std::ostream &			operator<<( std::ostream & o, Span const & i )
 {
 	const std::set<int> ex = i.getSet();
 	o << "(";
-	for (std::set<int>::iterator iter= ex.begin(); iter != ex.end(); iter++ )
-		o << *iter << "; ";
+	for (std::set<int>::iterator iter= ex.begin(); iter != ex.end(); iter++)
+		o << *iter << ", ";
 	o << "\b\b)";
 	return o;
 }
@@ -83,12 +83,27 @@ void Span::addNumbers(std::set<int>::iterator begin, std::set<int>::iterator end
 
 int Span::shortestSpan()
 {
-	return 0;
+	if (this->_size < 2)
+		throw Span::NoSpanCanBeFoundException();
+	std::set<int>::iterator iter0= this->set.begin();
+	std::set<int>::iterator iter1 = this->set.begin();
+	iter1++;
+	int shortest = abs(*iter0 - *iter1);
+	while (iter1 != this->set.end())
+	{
+		if (abs(*iter0 - *iter1) < shortest)
+			shortest = abs(*iter0 - *iter1);
+		iter0++;
+		iter1++;
+	}
+	return shortest;
 }
 
 int Span::longestSpan()
 {
-	return 1;
+	if (this->_size < 2)
+		throw Span::NoSpanCanBeFoundException();
+	return abs(*(this->set.begin()) - *(this->set.rbegin()));
 }
 
 

@@ -33,6 +33,12 @@ class Span
 			}
 		};
 
+		class NoSpanCanBeFoundException : public std::exception {
+			public: virtual const char* what() const throw() {
+				return "No span can be found!";
+			}
+		};
+
 	private:
 		Span();
 		std::set<int> set;
