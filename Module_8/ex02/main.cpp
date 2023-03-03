@@ -26,6 +26,13 @@ int main()
 			++it;
 		}
 		std::stack<int> s(mstack);
+		std::cout << "Additional testing ------\n";
+		MutantStack<int> ex;
+
+		ex = mstack;
+		it = ex.begin();
+		while (it != ex.end())
+			std::cout << *it++ << std::endl;
 	}
 	{
 		std::cout << "\nWith std::list --------------\n";
