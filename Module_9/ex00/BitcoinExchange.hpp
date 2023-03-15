@@ -17,13 +17,13 @@ class BitcoinExchange
 
 		BitcoinExchange &		operator=( BitcoinExchange const & rhs ); 
 
-		float valueOfBitcoin(const float amount, const std::string date) const;
+		float valueOfBitcoin(const float amount, std::string date);
 
 		const std::string &getDataBaseFileName() const;
 
-		class CantReadFileException : public std::exception {
+		class ErrorReadingDataBase : public std::exception {
 			public: virtual const char* what() const throw() {
-				return "BitcoinExchange error: count't open data base file!";
+				return "BitcoinExchange error: count't read data base file correctly!";
 			}
 		};
 
