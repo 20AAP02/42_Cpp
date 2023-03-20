@@ -76,17 +76,14 @@ void BitcoinExchange::readCsvFile(const std::string fileName)
 	if (!file)
 		throw BitcoinExchange::ErrorReadingDataBase();
 	
-	std::string args;
 	std::string date;
 	float exchange_rate = 0;
-	int commaIndex = 0;
-	while (file >> args)
+	while (file >> date)
 	{
 		exchange_rate = atof(date.substr(date.find(',', 0) + 1).c_str());
 		date = date.substr(0, date.find(',', 0));
 		this->_bitcoinPrices[date] = exchange_rate;
 	}
-	std::cout << this->_bitcoinPrices["2011-04-02"] << std::endl;
 	file.close();
 	this->_bitcoinPrices.erase("date");
 }
