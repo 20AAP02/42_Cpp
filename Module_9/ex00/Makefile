@@ -24,9 +24,9 @@ cls:
 	@clear
 
 e: cls re cls
-	@./$(NAME)
+	@./$(NAME) input.txt
 
 v: cls re cls
-	@valgrind ./$(NAME)
+	@valgrind ./$(NAME) input.txt
 
 .PHONY: all clean fclean re e cls v
