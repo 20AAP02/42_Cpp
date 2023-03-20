@@ -56,22 +56,31 @@ std::ostream &			operator<<( std::ostream & o, BitcoinExchange const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
-float BitcoinExchange::valueOfBitcoin(const float amount, const std::string date) const
+float BitcoinExchange::valueOfBitcoin(const float amount, std::string date)
 {
-	(void) amount;
-	(void) date;
-	return 0.0f;
+	if (this->_bitcoinPrices.find(date) != this->_bitcoinPrices.end())
+		return (this->_bitcoinPrices[date] * amount);
+	std::map<std::string, float>::iterator upperBound = this->_bitcoinPrices.lower_bound(date);
+	std::map<std::string, float>::iterator lowerBound = upperBound;
+	if (*upperBound == *(this->_bitcoinPrices.begin()))
+		return (upperBound->second * amount);
+	lowerBound--;
+	if (*lowerBound == *(this->_bitcoinPrices.rbegin()))
+		return (lowerBound->second * amount);
+	return ((lowerBound->second + upperBound->second) / 2.0f) * amount;
 }
 
 void BitcoinExchange::readCsvFile(const std::string fileName)
 {
 	std::ifstream file(fileName.c_str());
 	if (!file)
-		throw BitcoinExchange::CantReadFileException();
+		throw BitcoinExchange::ErrorReadingDataBase();
 	
+	std::string args;
 	std::string date;
 	float exchange_rate = 0;
-	while (file >> date)
+	int commaIndex = 0;
+	while (file >> args)
 	{
 		exchange_rate = atof(date.substr(date.find(',', 0) + 1).c_str());
 		date = date.substr(0, date.find(',', 0));
