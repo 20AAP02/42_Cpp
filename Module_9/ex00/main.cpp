@@ -30,7 +30,7 @@ int getDateAndValue(const std::string line, std::string &date, std::string &valu
 	return counter;
 }
 
-void divideDate(std::string date, int &year, int &month, int &day)
+void divideDate(const std::string date, int &year, int &month, int &day)
 {
 	std::string datePart;
 	std::stringstream wrd(date);
@@ -44,6 +44,21 @@ void divideDate(std::string date, int &year, int &month, int &day)
 		else
 			day = atoi(datePart.c_str());
 		counter++;
+	}
+}
+
+void printBitcoinValue(BitcoinExchange &BitcoinDataBase, const std::string date, const float amount)
+{
+	if (date == "date")
+		return;
+	int year, month, day;
+	divideDate(date, year, month, day);
+	if (year < 0 || year > 2023 || month < 0 || month > 11 || day < 0 || day > 31)
+		fterror("bad input => " + date);
+	else
+	{
+		std::cout << date << " => " << amount << " = ";
+		std::cout << BitcoinDataBase.valueOfBitcoin(amount, date) << std::endl;
 	}
 }
 
@@ -68,19 +83,7 @@ int main(int argc, char **argv)
 			else if (amount > 1000.0f)
 				fterror("too large a number.");
 			else
-			{
-				if (date == "date")
-					continue;
-				int year, month, day;
-				divideDate(date, year, month, day);
-				if (year < 0 || year > 2023 || month < 0 || month > 11 || day < 0 || day > 31)
-					fterror("bad input => " + date);
-				else
-				{
-					std::cout << date << " => " << amount << " = ";
-					std::cout << BitcoinDataBase.valueOfBitcoin(amount, date) << std::endl;
-				}
-			}
+				printBitcoinValue(BitcoinDataBase, date, amount);
 			
 		}
 	}
