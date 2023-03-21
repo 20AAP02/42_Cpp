@@ -7,6 +7,8 @@
 # include <vector>
 # include <list>
 # include <iterator>
+# include <cstdio>
+# include <ctime>
 
 class PmergeMe
 {

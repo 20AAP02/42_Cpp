@@ -33,7 +33,8 @@ PmergeMe::PmergeMe(const char **sequence)
 		this->_vctSequence.push_back((unsigned int)number);
 		this->_originalSqc.push_back((unsigned int)number);
 	}
-
+	this->sortList();
+	this->sortVector();
 }
 
 
@@ -93,10 +94,23 @@ int PmergeMe::fterror(const std::string msg) const
 
 std::list<unsigned int> PmergeMe::sortList()
 {
+	clock_t start = clock();
+	// Clock started
+	// Clock stoped
+	clock_t end = clock();
+	std::cout << "Time to process a range of " << this->_vctSequence.size() << " elements with std::list : " << double(end - start)/CLOCKS_PER_SEC << " sec\n";
+	return this->_lstSequence;
+
 }
 
 std::vector<unsigned int> PmergeMe::sortVector()
 {
+	clock_t start = clock();
+	// Clock started
+	// Clock stoped
+	clock_t end = clock();
+	std::cout << "Time to process a range of " << this->_vctSequence.size() << " elements with std::vector : " << double(end - start)/CLOCKS_PER_SEC << " sec\n";
+	return this->_vctSequence;
 }
 
 /*
