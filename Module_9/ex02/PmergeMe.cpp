@@ -33,8 +33,6 @@ PmergeMe::PmergeMe(const char **sequence)
 		this->_vctSequence.push_back((unsigned int)number);
 		this->_originalSqc.push_back((unsigned int)number);
 	}
-	this->sortList();
-	this->sortVector();
 }
 
 
@@ -92,25 +90,112 @@ int PmergeMe::fterror(const std::string msg) const
 	throw PmergeMe::ErrorException();
 }
 
-std::list<unsigned int> PmergeMe::sortList()
+std::string PmergeMe::sortList()
 {
 	clock_t start = clock();
 	// Clock started
+
+	// this->_lstSequence.sort();
 	// Clock stoped
 	clock_t end = clock();
-	std::cout << "Time to process a range of " << this->_vctSequence.size() << " elements with std::list : " << double(end - start)/CLOCKS_PER_SEC << " sec\n";
-	return this->_lstSequence;
+	std::string time =  SSTR("Time to process a range of " << this->_lstSequence.size() << " elements with std::list : " << float(end - start)/CLOCKS_PER_SEC << " sec\n");
+	return time;
 
 }
 
-std::vector<unsigned int> PmergeMe::sortVector()
+void printVectorOfVectors(std::vector<std::vector<unsigned int> > vectOfSequences)
+{
+	std::cout << "------------------------------------------------------------\n";
+	for (int i = 0; i < (int)vectOfSequences.size(); i++)
+	{
+		std::cout << "[";
+		for (int j = 0; j < (int)vectOfSequences[i].size(); j++)
+		{
+			std::cout << vectOfSequences[i][j];
+			if (j < (int)vectOfSequences[i].size() - 1)
+				std::cout << ",";
+		}
+		std::cout << "]\n";
+	}
+}
+
+std::vector<std::vector<unsigned int> > &divideVector(std::vector<std::vector<unsigned int> > &sqc, int k)
+{
+	if (k == 0)
+		return sqc;
+	if ((int)sqc[0].size() <= k)
+	{
+		std::vector<unsigned int> newVector = sqc[0];
+		sqc.erase(sqc.begin());
+		sqc.push_back(newVector);
+		return divideVector(sqc, 0);
+	}
+	if ((int)sqc[0].size() > k)
+	{
+		std::vector<unsigned int> newVector;
+		for (int i = 0; i < k; i++)
+			newVector.push_back(sqc[0][i]);
+		sqc[0].erase(sqc[0].begin(), sqc[0].begin() + k);
+		sqc.push_back(newVector);
+		return divideVector(sqc, k);
+	}
+	return sqc;
+}
+
+std::vector<unsigned int> &insertionSort(std::vector<unsigned int> &sqc)
+{
+	for (int i = 0; i < (int)sqc.size(); i++)
+	{
+		if (i == 0)
+			continue;
+		if (sqc[i - 1] > sqc[i])
+		{
+			std::swap(sqc[i - 1], sqc[i]);
+			i -= 2;
+		}
+	}
+	return sqc;
+}
+
+std::vector<unsigned int> &merge(std::vector<std::vector<unsigned int>> &sqc)
+{
+	std::vector<unsigned int> sortedVector;
+	if ((int)sqc.size() != 2)
+		return sortedVector;
+	std::vector<unsigned int> biggerSqc;
+	std::vector<unsigned int> lowerSqc;
+	if (sqc[0].size() <= sqc[1].size())
+		biggerSqc = sqc[1];
+	else
+		biggerSqc = sqc[0];
+	for (int i = 0; i < (int)biggerSqc.size(); i++)
+	{
+		unsigned int max;
+		if (sqc[0] < sqc[1])
+			
+	}
+
+
+}
+
+std::string PmergeMe::sortVector()
 {
 	clock_t start = clock();
 	// Clock started
+	std::vector<unsigned int> vec = this->_vctSequence;
+	//  divide the given N elements of array into (N/K) groups of each group of size K
+	std::vector<std::vector<unsigned int> > vectOfSequences;
+	vectOfSequences.push_back(vec);
+	vectOfSequences = divideVector(vectOfSequences, 3);
+	for (int i = 0;  i < (int)vectOfSequences.size(); i++)
+		insertionSort(vectOfSequences[i]);
+
+	// std::sort(this->_vctSequence.begin(), this->_vctSequence.end());
 	// Clock stoped
 	clock_t end = clock();
-	std::cout << "Time to process a range of " << this->_vctSequence.size() << " elements with std::vector : " << double(end - start)/CLOCKS_PER_SEC << " sec\n";
-	return this->_vctSequence;
+	printVectorOfVectors(vectOfSequences);
+	std::string time =  SSTR("Time to process a range of " << this->_vctSequence.size() << " elements with std::vector : " << float(end - start)/CLOCKS_PER_SEC << " sec\n");
+	return time;
 }
 
 /*

@@ -9,6 +9,10 @@
 # include <iterator>
 # include <cstdio>
 # include <ctime>
+# include <iomanip>
+# include <sstream>
+
+#define SSTR(x) static_cast< std::ostringstream & >((std::ostringstream() << std::dec << x)).str()
 
 class PmergeMe
 {
@@ -33,8 +37,8 @@ class PmergeMe
 		std::vector<unsigned int> getOriginalSqc() const;
 
 		int fterror(const std::string msg) const;
-		std::list<unsigned int> sortList();
-		std::vector<unsigned int> sortVector();
+		std::string sortList();
+		std::string sortVector();
 
 	private:
 		std::vector<unsigned int> _originalSqc;

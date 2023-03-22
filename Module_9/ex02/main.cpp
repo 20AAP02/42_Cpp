@@ -7,7 +7,9 @@ int main(int argc, char **argv)
 		if (argc == 1 || !(argv[1][0]))
 			return PmergeMe().fterror("not enough arguments.");
 		PmergeMe sequence(const_cast<const char**>(argv + 1));
-		std::cout << sequence;
+		std::string lstTime = sequence.sortList();
+		std::string vctTime = sequence.sortVector();
+		// std::cout << sequence << lstTime << vctTime;
 		
 	}
 	catch(const std::exception& e)
