@@ -1,2 +1,0 @@
-use stack for this exercise:
-https://mathworld.wolfram.com/ReversePolishNotation.html
