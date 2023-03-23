@@ -157,25 +157,42 @@ std::vector<unsigned int> &insertionSort(std::vector<unsigned int> &sqc)
 	return sqc;
 }
 
-std::vector<unsigned int> &merge(std::vector<std::vector<unsigned int>> &sqc)
+std::vector<std::vector<unsigned int> > &mergeSort(std::vector<std::vector<unsigned int> > &sqc)
 {
-	std::vector<unsigned int> sortedVector;
-	if ((int)sqc.size() != 2)
-		return sortedVector;
-	std::vector<unsigned int> biggerSqc;
-	std::vector<unsigned int> lowerSqc;
-	if (sqc[0].size() <= sqc[1].size())
-		biggerSqc = sqc[1];
-	else
-		biggerSqc = sqc[0];
-	for (int i = 0; i < (int)biggerSqc.size(); i++)
+	if ((int)sqc.size() > 2)
 	{
-		unsigned int max;
-		if (sqc[0] < sqc[1])
-			
+		std::vector<std::vector<unsigned int> > newSqc;
+		newSqc.push_back(*(sqc.begin()));
+		newSqc.push_back(*(sqc.begin() + 1));
+		sqc.erase(sqc.begin(), sqc.begin() + 2);
+		newSqc = mergeSort(newSqc);
+		sqc.push_back(newSqc[0]);
+		return mergeSort(sqc);
 	}
-
-
+	if ((int)sqc.size() == 2)
+	{
+		std::vector<unsigned int> sortedVector;
+		while ((int)sqc[0].size() > 0 && (int)sqc[1].size() > 0)
+		{
+			if (*(sqc[0].begin()) < *(sqc[1].begin()))
+			{
+				sortedVector.push_back(*(sqc[0].begin()));
+				sqc[0].erase(sqc[0].begin());
+			}
+			else
+			{
+				sortedVector.push_back(*(sqc[1].begin()));
+				sqc[1].erase(sqc[1].begin());
+			}
+		}
+		for (int i = 0; i < (int)sqc[0].size(); i++)
+			sortedVector.push_back(sqc[0][i]);
+		for (int i = 0; i < (int)sqc[1].size(); i++)
+			sortedVector.push_back(sqc[1][i]);
+		sqc.erase(sqc.begin(), sqc.begin() + 2);
+		sqc.push_back(sortedVector);
+	}
+	return sqc;
 }
 
 std::string PmergeMe::sortVector()
@@ -186,14 +203,12 @@ std::string PmergeMe::sortVector()
 	//  divide the given N elements of array into (N/K) groups of each group of size K
 	std::vector<std::vector<unsigned int> > vectOfSequences;
 	vectOfSequences.push_back(vec);
-	vectOfSequences = divideVector(vectOfSequences, 3);
+	vectOfSequences = divideVector(vectOfSequences, 2);
 	for (int i = 0;  i < (int)vectOfSequences.size(); i++)
 		insertionSort(vectOfSequences[i]);
-
-	// std::sort(this->_vctSequence.begin(), this->_vctSequence.end());
+	vectOfSequences = mergeSort(vectOfSequences);
 	// Clock stoped
 	clock_t end = clock();
-	printVectorOfVectors(vectOfSequences);
 	std::string time =  SSTR("Time to process a range of " << this->_vctSequence.size() << " elements with std::vector : " << float(end - start)/CLOCKS_PER_SEC << " sec\n");
 	return time;
 }

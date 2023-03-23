@@ -9,7 +9,7 @@ int main(int argc, char **argv)
 		PmergeMe sequence(const_cast<const char**>(argv + 1));
 		std::string lstTime = sequence.sortList();
 		std::string vctTime = sequence.sortVector();
-		// std::cout << sequence << lstTime << vctTime;
+		std::cout << sequence << lstTime << vctTime;
 		
 	}
 	catch(const std::exception& e)
