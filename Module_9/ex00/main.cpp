@@ -73,7 +73,9 @@ int main(int argc, char **argv)
 	std::string line, word, date, value;
 	while (getline(file, line))
 	{
-		if (getDateAndValue(line, date, value) < 2)
+		if (line != "date | value" && line.find_first_not_of("0123456789-|. ") != line.npos)
+			fterror("bad input => " + line);
+		else if (getDateAndValue(line, date, value) < 2)
 			fterror("bad input => " + line);
 		else
 		{

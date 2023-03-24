@@ -28,6 +28,11 @@ RPN::RPN(const std::string expression)
 				this->polishMathExpression.push(atoi(element.c_str()));
 			else
 			{
+				if (this->polishMathExpression.size() < 2)
+				{
+					std::cout << "Error\n";
+					return;
+				}
 				int x, y;
 				x = this->polishMathExpression.top();
 				this->polishMathExpression.pop();
