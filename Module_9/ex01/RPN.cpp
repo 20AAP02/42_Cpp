@@ -22,7 +22,12 @@ RPN::RPN(const std::string expression)
 	while (getline(str, element, ' '))
 	{
 		element.erase(std::remove_if(element.begin(), element.end(), ::isspace), element.end());
-		if (this->elementIsValid(element))
+		if (element.length() == 0)
+		{
+			std::cout << "Error: no characters\n";
+			return;
+		}
+		else if (this->elementIsValid(element))
 		{
 			if (isdigit(element[0]))
 				this->polishMathExpression.push(atoi(element.c_str()));
@@ -30,7 +35,7 @@ RPN::RPN(const std::string expression)
 			{
 				if (this->polishMathExpression.size() < 2)
 				{
-					std::cout << "Error\n";
+					std::cout << "Error: invalid number of operators\n";
 					return;
 				}
 				int x, y;
@@ -43,13 +48,13 @@ RPN::RPN(const std::string expression)
 		}
 		else
 		{
-			std::cout << "Error\n";
+			std::cout << "Error: invalid character\n";
 			return;
 		}
 	}
 	if (this->polishMathExpression.size() > 1)
 	{
-		std::cout << "Error\n";
+		std::cout << "Error: too many digits\n";
 		return;
 	}
 	std::cout << this->polishMathExpression.top() << std::endl;

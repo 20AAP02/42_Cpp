@@ -10,7 +10,7 @@ int main(int argc, char **argv)
 {
 	if (argc != 2 || !(argv[1][0]))
 	{
-		std::cout << "Error\n";
+		std::cout << "Error: too many arguments or too less\n";
 		return 1;
 	}
 	RPN a(argv[1]);
