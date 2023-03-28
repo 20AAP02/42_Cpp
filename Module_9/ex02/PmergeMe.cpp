@@ -90,7 +90,9 @@ int PmergeMe::fterror(const std::string msg) const
 	throw PmergeMe::ErrorException();
 }
 
-// Sort functions for list
+/*
+** --------------------------------- LIST FUNCTIONS ----------------------------------
+*/
 
 std::list<unsigned int>::iterator get(std::list<unsigned int> &_list, int index)
 {
@@ -165,7 +167,7 @@ std::list<unsigned int> &insertionSortList(std::list<unsigned int> &sqc)
 	std::list<unsigned int>::iterator next = sqc.begin();
 	next++;
 	std::list<unsigned int>::iterator mem;
-	for (std::list<unsigned int>::iterator current = sqc.begin(); current != sqc.end(); )
+	for (std::list<unsigned int>::iterator current = sqc.begin(); next != sqc.end(); )
 	{
 		if (*current > *next)
 		{
@@ -235,10 +237,8 @@ std::string PmergeMe::sortList()
 	std::list<std::list<unsigned int> > lstOfSequences;
 	lstOfSequences.push_back(lst);
 	lstOfSequences = divideList(lstOfSequences, 190);
-	// printListOfList(lstOfSequences);
 	for (std::list<std::list<unsigned int> >::iterator it = lstOfSequences.begin(); it != lstOfSequences.end(); it++)
 		insertionSortList(*it);
-	// printListOfList(lstOfSequences);
 	lstOfSequences = mergeSortList(lstOfSequences);
 	this->_lstSequence = lstOfSequences.front();
 	// Clock stoped
@@ -248,7 +248,9 @@ std::string PmergeMe::sortList()
 
 }
 
-// Sort functions for vector
+/*
+** --------------------------------- VECTOR FUNCTIONS ----------------------------------
+*/
 
 void printVectorOfVectors(std::vector<std::vector<unsigned int> > vectOfSequences)
 {
