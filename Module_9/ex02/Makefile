@@ -27,6 +27,6 @@ e: cls re cls
 	@./$(NAME) `shuf -i 1-100000 -n 100000 | tr "\n" " "`
 
 v: cls re cls
-	@valgrind ./$(NAME) `shuf -i 1-100000 -n 4000 | tr "\n" " "`
+	@valgrind ./$(NAME) `shuf -i 1-100000 -n 3000 | tr "\n" " "`
 
 .PHONY: all clean fclean re e cls v

@@ -234,7 +234,7 @@ std::string PmergeMe::sortList()
 	std::list<unsigned int> lst = this->_lstSequence;
 	std::list<std::list<unsigned int> > lstOfSequences;
 	lstOfSequences.push_back(lst);
-	lstOfSequences = divideList(lstOfSequences, 2);
+	lstOfSequences = divideList(lstOfSequences, 190);
 	// printListOfList(lstOfSequences);
 	for (std::list<std::list<unsigned int> >::iterator it = lstOfSequences.begin(); it != lstOfSequences.end(); it++)
 		insertionSortList(*it);

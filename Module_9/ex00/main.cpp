@@ -30,7 +30,7 @@ int getDateAndValue(const std::string line, std::string &date, std::string &valu
 	return counter;
 }
 
-void divideDate(const std::string date, int &year, int &month, int &day)
+int divideDate(const std::string date, int &year, int &month, int &day)
 {
 	std::string datePart;
 	std::stringstream wrd(date);
@@ -45,6 +45,7 @@ void divideDate(const std::string date, int &year, int &month, int &day)
 			day = atoi(datePart.c_str());
 		counter++;
 	}
+	return counter;
 }
 
 void printBitcoinValue(BitcoinExchange &BitcoinDataBase, const std::string date, const float amount)
@@ -52,8 +53,9 @@ void printBitcoinValue(BitcoinExchange &BitcoinDataBase, const std::string date,
 	if (date == "date")
 		return;
 	int year, month, day;
-	divideDate(date, year, month, day);
-	if (year < 0 || year > 2023 || month < 0 || month > 11 || day < 0 || day > 31)
+	if (divideDate(date, year, month, day) != 3)
+		fterror("bad input => " + date);
+	else if (year < 0 || year > 2023 || month < 1 || month > 12 || day < 1 || day > 31)
 		fterror("bad input => " + date);
 	else
 	{
@@ -75,7 +77,7 @@ int main(int argc, char **argv)
 	{
 		if (line != "date | value" && line.find_first_not_of("0123456789-|. ") != line.npos)
 			fterror("bad input => " + line);
-		else if (getDateAndValue(line, date, value) < 2)
+		else if (getDateAndValue(line, date, value) != 2)
 			fterror("bad input => " + line);
 		else
 		{
