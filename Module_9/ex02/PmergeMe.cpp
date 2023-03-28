@@ -62,16 +62,16 @@ PmergeMe &				PmergeMe::operator=( PmergeMe const & rhs )
 
 std::ostream &			operator<<( std::ostream & o, PmergeMe const & i )
 {
-	std::list<unsigned int> lst = i.getList();
-	std::vector<unsigned int> vec = i.getOriginalSqc();
+	std::vector<unsigned int> unsorted = i.getOriginalSqc();
+	std::vector<unsigned int> sorted = i.getVector();
 
 	o << "Before: ";
-	for (std::vector<unsigned int>::iterator iter= vec.begin(); iter != vec.end(); iter++)
+	for (std::vector<unsigned int>::iterator iter= unsorted.begin(); iter != unsorted.end(); iter++)
 	{
 		o << *iter << " ";
 	}
 	o << std::endl << "After: ";
-	for (std::list<unsigned int>::iterator iter= lst.begin(); iter != lst.end(); iter++)
+	for (std::vector<unsigned int>::iterator iter= sorted.begin(); iter != sorted.end(); iter++)
 	{
 		o << *iter << " ";
 	}
