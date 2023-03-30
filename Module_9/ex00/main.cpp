@@ -35,6 +35,8 @@ int divideDate(const std::string date, int &year, int &month, int &day)
 	std::string datePart;
 	std::stringstream wrd(date);
 	int counter = 0;
+	if (std::count(date.begin(), date.end(), '-') != 2)
+		return std::count(date.begin(), date.end(), '-') + 1;
 	while(getline(wrd, datePart, '-'))
 	{
 		if (!counter)
@@ -50,12 +52,18 @@ int divideDate(const std::string date, int &year, int &month, int &day)
 
 void printBitcoinValue(BitcoinExchange &BitcoinDataBase, const std::string date, const float amount)
 {
+	time_t theTime = time(NULL);
+	struct tm *aTime = localtime(&theTime);
 	if (date == "date")
 		return;
 	int year, month, day;
 	if (divideDate(date, year, month, day) != 3)
 		fterror("bad input => " + date);
-	else if (year < 0 || year > 2023 || month < 1 || month > 12 || day < 1 || day > 31)
+	else if (year < 0 || year > aTime->tm_year + 1900 || month < 1 || month > 12 || day < 1 || day > 31)
+		fterror("bad input => " + date);
+	else if (year == aTime->tm_year + 1900 && month > aTime->tm_mon + 1)
+		fterror("bad input => " + date);
+	else if (year == aTime->tm_year + 1900 && month == aTime->tm_mon + 1 && day > aTime->tm_mday)
 		fterror("bad input => " + date);
 	else
 	{
@@ -67,15 +75,21 @@ void printBitcoinValue(BitcoinExchange &BitcoinDataBase, const std::string date,
 int main(int argc, char **argv)
 {
 	if (argc != 2 || fileExists(argv[1]) == false)
-		return fterror("could not open file.");
+		return fterror("file doesn't exist.");
 	BitcoinExchange BitcoinDataBase("data.csv");
 	std::ifstream file(argv[1]);
+	std::string fileStr(argv[1]);
 	if (!file)
 		return fterror("could not open file.");
+	if (fileStr.substr(fileStr.find_last_of(".") + 1) != "txt")
+		return fterror("input file must be a '.txt' file.");
 	std::string line, word, date, value;
+	getline(file, line);
+	if (line != "date | value")
+		return fterror("file first line must have 'date | file'.");
 	while (getline(file, line))
 	{
-		if (line != "date | value" && line.find_first_not_of("0123456789-|. ") != line.npos)
+		if (line.find_first_not_of("0123456789-|. ") != line.npos)
 			fterror("bad input => " + line);
 		else if (getDateAndValue(line, date, value) != 2)
 			fterror("bad input => " + line);

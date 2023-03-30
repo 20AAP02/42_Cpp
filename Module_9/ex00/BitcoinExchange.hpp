@@ -6,6 +6,7 @@
 # include <string>
 # include <algorithm>
 # include <map>
+# include <ctime>
 
 class BitcoinExchange
 {
